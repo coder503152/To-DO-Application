@@ -1,18 +1,35 @@
-let ctr = 1
-
-function deletetodo(ctr) {
-    const eltodel = document.getElementById("to-do" + ctr);
-    eltodel.parentNode.removeChild(eltodel);
-}
+let ct = 1;
 
 function addtodo() {
-    const content = document.querySelector("#text");
-    const newEl = document.createElement("div");
-    newEl.setAttribute("id" , "to-do" + ctr);
+    const input = document.querySelector("#text");
+    const value = input.value.trim();
+    if (!value) return; // Prevent empty todos
 
-    newEl.innerHTML = '<div>' + ctr + '>' + content.value+ '</div>' + '<button onclick="deletetodo(' +ctr+ ')">Delete</button> ' ;
-    // ct++;
-    const parEl = document.querySelector("body").appendChild(newEl);
-    ctr++;
+    const spanel = document.createElement("span");
+    spanel.innerHTML = value;
+    const buttonel = document.createElement("button");
+    buttonel.innerHTML = "delete todo";
+    const divel = document.createElement("div");
+    divel.className = "todo-item";
+    divel.appendChild(spanel);
+    divel.appendChild(buttonel);
+    document.body.appendChild(divel);
+    divel.setAttribute("id", "to-do" + ct);
+
+    buttonel.onclick = function() {
+        divel.remove();
+    };
+
+    ct++;
+    input.value = ""; // Clear input after adding
 }
 
+// Listen for Enter key on the input field
+document.addEventListener("DOMContentLoaded", function() {
+    const input = document.querySelector("#text");
+    input.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            addtodo();
+        }
+    });
+});

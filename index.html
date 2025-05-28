@@ -1,17 +1,95 @@
-<!-- // I will create a to do application from the scratch here .  -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do Application</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #889a94;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-weight: 700;
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        #todo-container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            padding: 32px 24px 24px 24px;
+            margin-top: 32px;
+            min-width: 340px;
+        }
+        #text {
+            padding: 10px 14px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 200px;
+            margin-right: 10px;
+            font-family: inherit;
+        }
+        button {
+            padding: 10px 18px;
+            background: #4f8cff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f5fb;
+            border-radius: 6px;
+            padding: 10px 16px;
+            margin-top: 14px;
+            font-size: 1rem;
+            font-weight: 400;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+        .todo-item span {
+            flex: 1;
+            color: #222;
+        }
+        .todo-item button {
+            background: #ff5c5c;
+            color: #fff;
+            padding: 6px 14px;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            margin-left: 12px;
+        }
+        .todo-item button:hover {
+            background: #d90429;
+        }
+    </style>
 </head>
 <body>
-    <input id="text" placeholder="Write your to do">
-    <button onclick="addtodo()">Add TODO</button>
-    <button onclick="deletetodo()">Delete the TODO</button>
+    <h1>My To-Do List</h1>
+    <div id="todo-container">
+        <input id="text" placeholder="Write your to do">
+        <button onclick="addtodo()">Add TODO</button>
+    </div>
     <script src="scripts.js"></script>
 </body>
-</html><!-- // I will create a to do application from the scratch here .  -->
-
+</html>
