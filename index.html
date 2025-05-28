@@ -7,82 +7,116 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background: #889a94;
-            font-family: 'Roboto', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h1 {
-            font-weight: 700;
-            color: #333;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        #todo-container {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-            padding: 32px 24px 24px 24px;
-            margin-top: 32px;
-            min-width: 340px;
-        }
-        #text {
-            padding: 10px 14px;
-            border: 1px solid #bbb;
-            border-radius: 6px;
-            font-size: 1rem;
-            width: 200px;
-            margin-right: 10px;
-            font-family: inherit;
-        }
-        button {
-            padding: 10px 18px;
-            background: #4f8cff;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background: #2563eb;
-        }
-        .todo-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f1f5fb;
-            border-radius: 6px;
-            padding: 10px 16px;
-            margin-top: 14px;
-            font-size: 1rem;
-            font-weight: 400;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-        }
-        .todo-item span {
-            flex: 1;
-            color: #222;
-        }
-        .todo-item button {
-            background: #ff5c5c;
-            color: #fff;
-            padding: 6px 14px;
-            font-size: 0.95rem;
-            border-radius: 4px;
-            margin-left: 12px;
-        }
-        .todo-item button:hover {
-            background: #d90429;
-        }
-    </style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Soft gradient background */
+        background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        /* Subtle pattern overlay using a SVG data URI */
+        position: relative;
+    }
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 0;
+        opacity: 0.15;
+        pointer-events: none;
+        background: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="19" width="2" height="40" fill="%23b6c6e6"/><rect y="19" width="40" height="2" fill="%23b6c6e6"/></svg>');
+    }
+    h1 {
+        font-weight: 700;
+        color: #333;
+        margin-top: 48px;
+        margin-bottom: 24px;
+        letter-spacing: 2px;
+        z-index: 1;
+        text-shadow: 0 2px 8px rgba(180,200,255,0.15);
+    }
+    #todo-container {
+        background: rgba(255,255,255,0.95);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(80,120,200,0.12), 0 1.5px 6px rgba(80,120,200,0.07);
+        padding: 36px 28px 28px 28px;
+        margin-top: 32px;
+        min-width: 340px;
+        z-index: 1;
+        transition: box-shadow 0.2s;
+    }
+    #todo-container:hover {
+        box-shadow: 0 12px 40px rgba(80,120,200,0.18), 0 2px 8px rgba(80,120,200,0.10);
+    }
+    #text {
+        padding: 12px 16px;
+        border: 1.5px solid #b6c6e6;
+        border-radius: 8px;
+        font-size: 1rem;
+        width: 210px;
+        margin-right: 12px;
+        font-family: inherit;
+        background: #f7fafd;
+        transition: border 0.2s;
+    }
+    #text:focus {
+        border: 1.5px solid #4f8cff;
+        outline: none;
+        background: #eaf3ff;
+    }
+    button {
+        padding: 12px 22px;
+        background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(80,120,200,0.08);
+    }
+    button:hover {
+        background: linear-gradient(90deg, #2563eb 60%, #4f8cff 100%);
+        box-shadow: 0 4px 16px rgba(80,120,200,0.13);
+    }
+    .todo-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f1f5fb;
+        border-radius: 8px;
+        padding: 12px 18px;
+        margin-top: 16px;
+        font-size: 1rem;
+        font-weight: 400;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        z-index: 1;
+        transition: background 0.2s;
+    }
+    .todo-item span {
+        flex: 1;
+        color: #222;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+    .todo-item button {
+        background: linear-gradient(90deg, #ff5c5c 60%, #d90429 100%);
+        color: #fff;
+        padding: 7px 16px;
+        font-size: 0.97rem;
+        border-radius: 5px;
+        margin-left: 14px;
+        font-weight: 600;
+        box-shadow: none;
+    }
+    .todo-item button:hover {
+        background: linear-gradient(90deg, #d90429 60%, #ff5c5c 100%);
+    }
+</style>
 </head>
 <body>
     <h1>My To-Do List</h1>
